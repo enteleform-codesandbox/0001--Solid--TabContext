@@ -70,7 +70,7 @@ import {
 
 	const Context = createContext<Store>()
 
-	export function Store(){
+	function Store(){
 		const [activeTab, set_ActiveTab] = createSignal<string>()
 
 		const store: Store = {
