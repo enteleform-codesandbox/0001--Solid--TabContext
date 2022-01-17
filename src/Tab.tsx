@@ -11,55 +11,51 @@ import {
 //##>  Components                                                                                                   ##//
 //####################################################################################################################//
 
-	export namespace Tab{
+	export function Container(props:Props<{active:string}>){
+		const store = Store()
 
-		export function Container(props:Props<{active:string}>){
-			const store = Store()
+		store.set_ActiveTab(props.active)
 
-			store.set_ActiveTab(props.active)
-
-			return (
-				<Context.Provider value={store}>
-					<div class="Tab_Container">
-						{props.children}
-					</div>
-				</Context.Provider>
-			)
-		}
-
-		export function Button(props:{id:string}){
-			const {is_ActiveTab, set_ActiveTab} = useContext(Context)
-
-			return (
-				<button
-					class     = "Tab_Button"
-					classList = {{Active:is_ActiveTab(props.id)}}
-					onClick   = {() => {set_ActiveTab(props.id)}}
-				>
-					{props.id}
-				</button>
-			)
-		}
-
-		export function Panel(props:Props<{id:string}>){
-			const {is_ActiveTab}  = useContext(Context)
-
-			return (
-				<Show when={is_ActiveTab(props.id)}>
-					<div class="Tab_Panel">
-						{props.children}
-					</div>
-				</Show>
-			)
-		}
-
-		export function List(props:Props)
-			{return <div class="Tab_List">{props.children}</div>}
-
-		export function Panels(props:Props)
-			{return <div class="Tab_Panels">{props.children}</div>}
-
+		return (
+			<Context.Provider value={store}>
+				<div class="Tab_Container">
+					{props.children}
+				</div>
+			</Context.Provider>
+		)
 	}
+
+	export function Button(props:{id:string}){
+		const {is_ActiveTab, set_ActiveTab} = useContext(Context)
+
+		return (
+			<button
+				class     = "Tab_Button"
+				classList = {{Active:is_ActiveTab(props.id)}}
+				onClick   = {() => {set_ActiveTab(props.id)}}
+			>
+				{props.id}
+			</button>
+		)
+	}
+
+	export function Panel(props:Props<{id:string}>){
+		const {is_ActiveTab}  = useContext(Context)
+
+		return (
+			<Show when={is_ActiveTab(props.id)}>
+				<div class="Tab_Panel">
+					{props.children}
+				</div>
+			</Show>
+		)
+	}
+
+	export function List(props:Props)
+		{return <div class="Tab_List">{props.children}</div>}
+
+	export function Panels(props:Props)
+		{return <div class="Tab_Panels">{props.children}</div>}
 
 
 //####################################################################################################################//

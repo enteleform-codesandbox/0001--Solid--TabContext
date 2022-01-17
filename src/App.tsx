@@ -1,4 +1,4 @@
-import {Tab} from "./Tab"
+import * as Tab from "./Tab"
 
 
 export function App(){
